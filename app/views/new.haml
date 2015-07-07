@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title Robot World
+  %body
+    %h1 Robot World
+    %h2 Add a New Robot
+    %form{:action => "/robots", :method => "POST"}
+      %label{:for => "robot[name]"} Name
+      %input{:type => "textbox", :name => "robot[name]"} <br>
+      %label{:for => "robot[city]"} City
+      %input{:type => "textbox", :name => "robot[city]"} <br>
+      %label{:for => "robot[state]"} State
+      %input{:type => "textbox", :name => "robot[state]"} <br>
+      %label{:for => "robot[birthdate]"} Birthdate
+      %input{:type => "date", :name => "robot[birthdate]"} <br>
+      %label{:for => "robot[hired_date]"} Date of Hire
+      %input{:type => "date", :name => "robot[hired_date]"} <br>
+      %label{:for => "robot[department]"} Department
+      %input{:type => "textbox", :name => "robot[department]"} <br>
+      %input{:type => "submit"}

@@ -1,0 +1,10 @@
+---
+robots:
+- id: 2
+  name: HAL 9000
+  city: Houston
+  state: TX
+  birthdate: '2001-01-01'
+  hired_date: '2015-07-06'
+  department: Space
+total: 2

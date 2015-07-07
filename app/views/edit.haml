@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %title Robot World
+  %body
+    %h1 Robot World
+    %h2 Update a Robot
+    %h3= @robot.name
+    %p
+      %img{:src => "https://robohash.org/#{@robot.id}.png"}
+    %form{:action => "/robots/#{@robot.id}", :method => "POST"}
+      %input{:type => "hidden", :name => "_method", :value => "PUT"}
+      %label{:for => "robot[name]"} Name
+      %input{:type => "text", :name => "robot[name]", :value => @robot.name} <br>
+      %label{:for => "robot[city]"} City
+      %input{:type => "text", :name => "robot[city]", :value => @robot.city} <br>
+      %label{:for => "robot[state]"} State
+      %input{:type => "text", :name => "robot[state]", :value => @robot.state} <br>
+      %label{:for => "robot[birthdate]"} Birthdate
+      %input{:type => "date", :name => "robot[birthdate]", :value => @robot.birthdate} <br>
+      %label{:for => "robot[hired_date]"} Date of Hire
+      %input{:type => "date", :name => "robot[hired_date]", :value => @robot.hired_date} <br>
+      %label{:for => "robot[department]"} Department
+      %input{:type => "textbox", :name => "robot[department]", :value => @robot.department} <br>
+      %input{:type => "submit", :value => "update"}

@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Robot World
+  %body
+    %h1 Robot World
+    %h2= @robot.name
+    %p
+      %img{:src => "https://robohash.org/#{@robot.id}.png"}
+    %p= "#{@robot.city}, #{@robot.state}"
+    %p= "Birthdate: #{@robot.birthdate}"
+    %p= "Date of Hire: #{@robot.hired_date}"
+    %p= "Department: #{@robot.department}"
+    %button
+      %a{:href => "/robots/#{@robot.id}/edit"} edit
+    %form{:action => "/robots/#{@robot.id}", :method => "POST"}
+      %input{:type => "hidden", :name => "_method", :value => "DELETE"}
+      %input{:type => "submit", :value => "delete"}
