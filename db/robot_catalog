@@ -49,4 +49,11 @@ robots:
   birthdate: '2010-05-23'
   hired_date: '2010-05-24'
   department: Space
-total: 9
+- id: 10
+  name: C-3PO
+  city: Galactic City
+  state: Coruscant
+  birthdate: '1849-03-16'
+  hired_date: '1999-04-01'
+  department: Translation
+total: 10

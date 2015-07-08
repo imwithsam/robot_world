@@ -47,4 +47,8 @@ class RobotWorldApp < Sinatra::Base
       RobotRepository.delete(id.to_i)
       redirect "/robots"
     end
+
+    not_found do
+      haml :error
+    end
 end

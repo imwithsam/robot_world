@@ -1,0 +1,16 @@
+%h2 An Error Occurred
+%h3 Params
+%table{class: "table table-responsive"}
+  %tbody
+    %tr
+      %th Request Verb
+      %td= request.request_method
+    %tr
+      %th Request Path
+      %td= request.path
+    %tr
+      %th{colspan: "2"} Parameters
+      - request.params.each do |key, value|
+        %tr
+          %td= key
+          %td= value
