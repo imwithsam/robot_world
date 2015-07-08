@@ -73,4 +73,28 @@ class RobotRepository
     end
     grouped_by_year.sort
   end
+
+  def self.number_by_department
+    grouped_by_department = {}
+    all.group_by { |robot| robot.department }.each do |key, value|
+      grouped_by_department[key] = value.count
+    end
+    grouped_by_department.sort_by { |key, value| value }.reverse
+  end
+
+  def self.number_by_city
+    grouped_by_city = {}
+    all.group_by { |robot| robot.city }.each do |key, value|
+      grouped_by_city[key] = value.count
+    end
+    grouped_by_city.sort_by { |key, value| value }.reverse
+  end
+
+  def self.number_by_state
+    grouped_by_state = {}
+    all.group_by { |robot| robot.state }.each do |key, value|
+      grouped_by_state[key] = value.count
+    end
+    grouped_by_state.sort_by { |key, value| value }.reverse
+  end
 end
