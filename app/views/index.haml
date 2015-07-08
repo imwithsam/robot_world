@@ -1,37 +1,34 @@
-!!!
-%html
-  %head
-    %title Robot World
-  %body
-    %h1 Robot World
-    %table
-      %caption Robot Catalog
-      %thead
+.table-responsive
+  %table{class: "table table-striped"}
+    %caption Robot Catalog
+    %thead
+      %tr
+        %th &nbsp;
+        %th Name
+        %th City
+        %th State
+        %th Birthdate
+        %th Date Hired
+        %th Department
+        %th &nbsp;
+        %th &nbsp;
+    %tbody
+      - @robots.each do |robot|
         %tr
-          %th edit
-          %th delete
-          %th Avatar
-          %th Name
-          %th City
-          %th State
-          %th Birthdate
-          %th Date Hired
-          %th Department
-      %tbody
-        - @robots.each do |robot|
-          %tr
-            %td
-              %button
-                %a{:href => "/robots/#{robot.id}/edit"} edit
-            %td
-              %form{:action => "/robots/#{robot.id}", :method => "POST"}
-                %input{:type => "hidden", :name => "_method", :value => "DELETE"}
-                %input{:type => "submit", :value => "delete"}
-            %td
-              %img{:src => "https://robohash.org/#{robot.id}.png"}
-            %td= robot.name
-            %td= robot.city
-            %td= robot.state
-            %td= robot.birthdate
-            %td= robot.hired_date
-            %td= robot.department
+          %td
+            %a{href: "/robots/#{robot.id}"}
+              %img{class: "img-thumbnail avatar", src: "https://robohash.org/#{robot.id}.png", alt:"Avatar"}
+          %td
+            %a{href: "/robots/#{robot.id}"}
+              =robot.name
+          %td= robot.city
+          %td= robot.state
+          %td= robot.birthdate
+          %td= robot.hired_date
+          %td= robot.department
+          %td
+            %a{class: "btn btn-default",   href: "/robots/#{robot.id}/edit"} edit
+          %td
+            %form{action: "/robots/#{robot.id}", method: "POST"}
+              %input{type: "hidden", name: "_method", value: "DELETE"}
+              %input{class: "btn btn-danger", type: "submit", value: "delete" }

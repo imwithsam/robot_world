@@ -1,12 +1,5 @@
 ---
 robots:
-- id: 2
-  name: HAL 9000
-  city: Houston
-  state: TX
-  birthdate: '2001-01-01'
-  hired_date: '2015-07-06'
-  department: Space
 - id: 3
   name: R5
   city: Anchorhead
@@ -49,4 +42,11 @@ robots:
   birthdate: '2013-04-18'
   hired_date: '2013-08-08'
   department: Extermination
-total: 8
+- id: 9
+  name: HAL 9000
+  city: Houston
+  state: TX
+  birthdate: '2010-05-23'
+  hired_date: '2010-05-24'
+  department: Space
+total: 9

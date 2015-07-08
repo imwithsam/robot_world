@@ -1,47 +1,52 @@
-%h1 Robot World
-%h2 Robot Catalog
-%p
-  %a{:href => "/robots"} View
-%p
-  %a{:href => "/robots/new"} Add New Robot
-%p Average Robot Age: #{@average_age}
-%table
-  %caption Robots Hired
-  %thead
-    %tr
-      %th Year
-      %th # Hired
-    - @number_hired_by_year.each do |key, value|
+%h2 Dashboard
+%dl{class: "dl-horizontal"}
+  %dt Average Robot Age
+  %dd= @average_age
+.table-responsive
+  %table{class: "table table-striped"}
+    %caption Robots Hired
+    %thead
       %tr
-        %td= key
-        %td= value
-%table
-  %caption Robots by Department
-  %thead
-    %tr
-      %th Department
-      %th # Robots
-    - @number_by_department.each do |key, value|
+        %th Year
+        %th # Hired
+    %tbody
+      - @number_hired_by_year.each do |key, value|
+        %tr
+          %td= key
+          %td= value
+.table-responsive
+  %table{class: "table table-striped"}
+    %caption Robots by Department
+    %thead
       %tr
-        %td= key
-        %td= value
-%table
-  %caption Robots by City
-  %thead
-    %tr
-      %th City
-      %th # Robots
-    - @number_by_city.each do |key, value|
+        %th Department
+        %th # Robots
+    %tbody
+      - @number_by_department.each do |key, value|
+        %tr
+          %td= key
+          %td= value
+.table-responsive
+  %table{class: "table table-striped"}
+    %caption Robots by City
+    %thead
       %tr
-        %td= key
-        %td= value
-%table
-  %caption Robots by State
-  %thead
-    %tr
-      %th State
-      %th # Robots
-    - @number_by_state.each do |key, value|
+        %th City
+        %th # Robots
+    %tbody
+      - @number_by_city.each do |key, value|
+        %tr
+          %td= key
+          %td= value
+.table-responsive
+  %table{class: "table table-striped"}
+    %caption Robots by State
+    %thead
       %tr
-        %td= key
-        %td= value
+        %th State
+        %th # Robots
+    %tbody
+      - @number_by_state.each do |key, value|
+        %tr
+          %td= key
+          %td= value

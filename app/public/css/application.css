@@ -1,0 +1,16 @@
+.logo {
+  background-image: url("https://d262ilb51hltx0.cloudfront.net/fit/t/1200/504/0*CvXAD_arebD7RU65.jpeg");
+  height: 225px;
+  margin-bottom: 10px;
+}
+.logo h1 {
+  color: white;
+  padding-left: 37px;
+  padding-top: 17px;
+  text-shadow: 2px 2px 8px #222;
+}
+
+.avatar {
+  height: 100px;
+  width: 100px;
+}
