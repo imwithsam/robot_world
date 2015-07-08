@@ -21,15 +21,27 @@
     %tr
       %th Department
       %th # Robots
+    - @number_by_department.each do |key, value|
+      %tr
+        %td= key
+        %td= value
 %table
   %caption Robots by City
   %thead
     %tr
       %th City
       %th # Robots
+    - @number_by_city.each do |key, value|
+      %tr
+        %td= key
+        %td= value
 %table
   %caption Robots by State
   %thead
     %tr
       %th State
       %th # Robots
+    - @number_by_state.each do |key, value|
+      %tr
+        %td= key
+        %td= value
