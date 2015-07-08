@@ -65,4 +65,12 @@ class RobotRepository
   def self.average_age
     all.reduce(0) { |sum, robot| sum + robot.age } / all.size
   end
+
+  def self.number_hired_by_year
+    grouped_by_year = {}
+    all.group_by { |robot| robot.hired_date.year }.each do |key, value|
+      grouped_by_year[key] = value.count
+    end
+    grouped_by_year.sort
+  end
 end

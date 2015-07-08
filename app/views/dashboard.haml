@@ -11,6 +11,10 @@
     %tr
       %th Year
       %th # Hired
+    - @number_hired_by_year.each do |key, value|
+      %tr
+        %td= key
+        %td= value
 %table
   %caption Robots by Department
   %thead

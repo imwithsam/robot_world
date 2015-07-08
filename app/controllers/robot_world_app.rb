@@ -7,6 +7,7 @@ class RobotWorldApp < Sinatra::Base
 
     get "/" do
       @average_age = RobotRepository.average_age
+      @number_hired_by_year = RobotRepository.number_hired_by_year
       haml :dashboard
     end
 

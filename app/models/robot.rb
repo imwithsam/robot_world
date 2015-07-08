@@ -8,19 +8,18 @@ class Robot
               :department
 
   def initialize(data)
-    @id = data["id"]
+    @id = data["id"].to_i
     @name = data["name"]
     @city = data["city"]
     @state = data["state"]
-    @birthdate = data["birthdate"]
-    @hired_date = data["hired_date"]
+    @birthdate = Date.strptime(data["birthdate"], "%Y-%m-%d")
+    @hired_date = Date.strptime(data["hired_date"], "%Y-%m-%d")
     @department = data["department"]
   end
 
   def age
-    birthday = Date.strptime(@birthdate, "%Y-%m-%d")
     today = Date.today
-    today.year - birthday.year - ((today.month > birthday.month ||
-      (today.month == birthday.month && today.day >= birthday.day)) ? 0 : 1)
+    today.year - @birthdate.year - ((today.month > @birthdate.month ||
+      (today.month == @birthdate.month && today.day >= @birthdate.day)) ? 0 : 1)
   end
 end

@@ -14,4 +14,25 @@ robots:
   birthdate: '2013-07-07'
   hired_date: '2014-12-31'
   department: Moisture Farming
-total: 3
+- id: 4
+  name: BathroomBot
+  city: Denver
+  state: CO
+  birthdate: '2011-12-01'
+  hired_date: '2011-12-02'
+  department: Janitorial
+- id: 5
+  name: R2-D2
+  city: Galactic City
+  state: Coruscant
+  birthdate: '2013-01-01'
+  hired_date: '2013-03-15'
+  department: Dehousing
+- id: 6
+  name: Terminator
+  city: Phoenix
+  state: AZ
+  birthdate: '2013-01-15'
+  hired_date: '2013-05-07'
+  department: Extermination
+total: 6
