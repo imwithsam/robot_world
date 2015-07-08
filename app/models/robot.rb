@@ -16,4 +16,11 @@ class Robot
     @hired_date = data["hired_date"]
     @department = data["department"]
   end
+
+  def age
+    birthday = Date.strptime(@birthdate, "%Y-%m-%d")
+    today = Date.today
+    today.year - birthday.year - ((today.month > birthday.month ||
+      (today.month == birthday.month && today.day >= birthday.day)) ? 0 : 1)
+  end
 end

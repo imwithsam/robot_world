@@ -7,4 +7,11 @@ robots:
   birthdate: '2001-01-01'
   hired_date: '2015-07-06'
   department: Space
-total: 2
+- id: 3
+  name: R5
+  city: Anchorhead
+  state: Tatooine
+  birthdate: '2013-07-07'
+  hired_date: '2014-12-31'
+  department: Moisture Farming
+total: 3

@@ -6,6 +6,7 @@ class RobotWorldApp < Sinatra::Base
     set :method_override, true
 
     get "/" do
+      @average_age = RobotRepository.average_age
       haml :dashboard
     end
 
