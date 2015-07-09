@@ -68,7 +68,11 @@ class RobotRepository
   end
 
   def self.average_age
-    all.reduce(0) { |sum, robot| sum + robot.age } / all.size
+    if all.size > 0
+      all.reduce(0) { |sum, robot| sum + robot.age } / all.size
+    else
+      0
+    end
   end
 
   def self.number_hired_by_year
