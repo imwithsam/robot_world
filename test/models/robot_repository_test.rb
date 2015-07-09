@@ -3,18 +3,22 @@ require_relative "../test_helper"
 class RobotRepositoryTest < Minitest::Test
   def test_it_adds_and_finds_a_robot
     RobotRepository.create({ name: "Bender" })
-    result = RobotRepository.find(1)
+    # result = RobotRepository.find(1)
+    result = RobotRepository.find(RobotRepository.all.last.id)
 
-    assert_equal 1, result.id
+    # assert_equal 1, result.id
+    assert_equal RobotRepository.all.last.id, result.id
   end
 
   def test_it_creates_multiple_robots_and_finds_one
     RobotRepository.create({ name: "Bender" })
     RobotRepository.create({ name: "Rosie" })
     RobotRepository.create({ name: "HAL 9000" })
-    result = RobotRepository.find(2)
+    # result = RobotRepository.find(2)
+    result = RobotRepository.find(RobotRepository.all.last.id)
 
-    assert_equal 2, result.id
+    # assert_equal 2, result.id
+    assert_equal RobotRepository.all.last.id, result.id
   end
 
   def test_it_returns_all_robots
@@ -28,15 +32,21 @@ class RobotRepositoryTest < Minitest::Test
 
   def test_it_updates_a_robot
     RobotRepository.create({ name: "Bender" })
-    RobotRepository.update(1, { name: "Astro Boy" })
-    result = RobotRepository.find(1)
+    # RobotRepository.update(1, { name: "Astro Boy" })
+    RobotRepository.update(
+      RobotRepository.all.last.id,
+      { name: "Astro Boy" }
+    )
+    # result = RobotRepository.find(1)
+    result = RobotRepository.find(RobotRepository.all.last.id)
 
     assert_equal "Astro Boy", result.name
   end
 
   def test_it_terminates_a_robot
     RobotRepository.create({ name: "Bender" })
-    RobotRepository.delete(1)
+    # RobotRepository.delete(1)
+    RobotRepository.delete(RobotRepository.all.last.id)
     result = RobotRepository.all
 
     assert_equal 0, result.count

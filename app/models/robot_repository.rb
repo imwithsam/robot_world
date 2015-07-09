@@ -1,70 +1,93 @@
-require "yaml/store"
-
 class RobotRepository
   def self.database
     if ENV["ROBOT_WORLD_ENV"] == "test"
-      @database ||= YAML::Store.new("db/robot_catalog_test")
+      @database ||= Sequel.sqlite("db/robot_catalog_test.sqlite3")
     else
-      @database ||= YAML::Store.new("db/robot_catalog")
+      @database ||= Sequel.sqlite("db/robot_catalog_development.sqlite3")
     end
+  end
+
+  def self.dataset
+    database.from(:robots)
   end
 
   def self.delete_all
-    database.transaction do
-      database["robots"] = []
-      database["total"] = 0
-    end
+    dataset.delete
+    # database.from(:total).update
+    # database.transaction do
+    #   database["robots"] = []
+    #   database["total"] = 0
+    # end
   end
 
-  def self.raw_robots
-    database.transaction do
-      database["robots"] || []
-    end
-  end
+  # def self.raw_robots
+  #   database.transaction do
+  #     database["robots"] || []
+  #   end
+  # end
 
-  def self.raw_robot(id)
-    raw_robots.find { |row| row["id"] == id}
-  end
+  # def self.raw_robot(id)
+  #   raw_robots.find { |row| row["id"] == id}
+  # end
 
   def self.all
-    raw_robots.map { |data| Robot.new(data) }
+    # raw_robots.map { |data| Robot.new(data) }
+    dataset.to_a.map { |data| Robot.new(data) }
   end
 
   def self.find(id)
-    Robot.new(raw_robot(id))
+    # Robot.new(raw_robot(id))
+    all.find { |robot| robot.id == id }
   end
 
   def self.create(robot)
-    database.transaction do
-      database["robots"] ||= []
-      database["total"] ||= 0
-      database["total"] += 1
-      database["robots"] << { "id"         => database["total"],
-                              "name"       => robot[:name],
-                              "city"       => robot[:city],
-                              "state"      => robot[:state],
-                              "birthdate"  => robot[:birthdate],
-                              "hired_date" => robot[:hired_date],
-                              "department" => robot[:department] }
-    end
+    # database.transaction do
+    #   database[:robots] ||= []
+    #   database["total"] ||= 0
+    #   database["total"] += 1
+    #   database["robots"] << { "id"         => database["total"],
+    #                           "name"       => robot[:name],
+    #                           "city"       => robot[:city],
+    #                           "state"      => robot[:state],
+    #                           "birthdate"  => robot[:birthdate],
+    #                           "hired_date" => robot[:hired_date],
+    #                           "department" => robot[:department] }
+    # end
+    dataset.insert(
+      name:       robot[:name],
+      city:       robot[:city],
+      state:      robot[:state],
+      birthdate:  robot[:birthdate],
+      hired_date: robot[:hired_date],
+      department: robot[:department]
+    )
   end
 
   def self.update(id, robot)
-    database.transaction do
-      target = database["robots"].find { |row| row["id"] == id }
-      target["name"]       = robot[:name]
-      target["city"]       = robot[:city]
-      target["state"]      = robot[:state]
-      target["birthdate"]  = robot[:birthdate]
-      target["hired_date"] = robot[:hired_date]
-      target["department"] = robot[:department]
-    end
+    # database.transaction do
+    #   target = database["robots"].find { |row| row["id"] == id }
+    #   target["name"]       = robot[:name]
+    #   target["city"]       = robot[:city]
+    #   target["state"]      = robot[:state]
+    #   target["birthdate"]  = robot[:birthdate]
+    #   target["hired_date"] = robot[:hired_date]
+    #   target["department"] = robot[:department]
+    # end
+    dataset.update(
+      name:       robot[:name],
+      city:       robot[:city],
+      state:      robot[:state],
+      birthdate:  robot[:birthdate],
+      hired_date: robot[:hired_date],
+      department: robot[:department]
+    )
   end
 
   def self.delete(id)
-    database.transaction do
-      database["robots"].delete_if { |row| row["id"] == id }
-    end
+    # database.transaction do
+    #   database["robots"].delete_if { |row| row["id"] == id }
+    # end
+    dataset.where(id: id).delete
   end
 
   def self.average_age
