@@ -5,7 +5,7 @@ class CatalogTest < FeatureTest
     visit "/robots"
   end
 
-  def test_it_displays_robot_catalog
+  def test_it_displays_robot_catalog_heading
     assert page.has_content?("Robot Catalog")
   end
 end

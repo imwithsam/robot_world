@@ -5,7 +5,7 @@ class DashboardTest < FeatureTest
     visit "/"
   end
 
-  def test_it_displays_dashboard
+  def test_it_displays_dashboard_heading
     assert page.has_content?("Dashboard")
   end
 
