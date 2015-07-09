@@ -8,6 +8,8 @@ class Robot
               :department
 
   def initialize(data)
+    data["birthdate"] ||= "2015-07-08"
+    data["hired_date"] ||= "2015-07-09"
     @id = data["id"].to_i
     @name = data["name"]
     @city = data["city"]

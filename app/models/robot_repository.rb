@@ -1,9 +1,19 @@
-require 'yaml/store'
-require_relative 'robot'
+require "yaml/store"
 
 class RobotRepository
   def self.database
-    @database ||= YAML::Store.new("db/robot_catalog")
+    if ENV["ROBOT_WORLD_ENV"] == "test"
+      @database ||= YAML::Store.new("db/robot_catalog_test")
+    else
+      @database ||= YAML::Store.new("db/robot_catalog")
+    end
+  end
+
+  def self.delete_all
+    database.transaction do
+      database["robots"] = []
+      database["total"] = 0
+    end
   end
 
   def self.raw_robots
@@ -17,11 +27,6 @@ class RobotRepository
   end
 
   def self.all
-    # raw_robots.map { |data| Robot.new(data) }
-    # hired_by_year = hired_by_year(robots)
-    # number_by_department = number_by_department(robots)
-    # number_by_city = number_by_city(robots)
-    # number_by_state = number_by_state(robots)
     raw_robots.map { |data| Robot.new(data) }
   end
 
